@@ -1,0 +1,11 @@
+COMPILE:
+-- The source files can be compiled on both Linux and Windows.
+-- The attached executable file (under the bin directory) is built on windows using Code::Blocks 10.05.
+
+USAGE:
+-- run the executable file (under bin directory) in windows command line:
+lexAnalyst.exe pascal_file_name
+-- check the output in console
+
+SAMPLE TEST:
+-- example_output.txt is the redirected output by executing "lexAnalyst.exe example.pas > example_output.txt" in Windows command line.

@@ -1,0 +1,116 @@
+   1    Program
+      2    tok_program --> "PROGRAM"
+      2    tok_identifier --> "EXPRESSIONTEST"
+      2    tok_op_prnth --> "("
+      2    IdList
+         3    tok_identifier --> "INPUT"
+         3    _IdList_
+            4    tok_comma --> ","
+            4    tok_identifier --> "OUTPUT"
+            4    _IdList_
+      2    tok_cl_prnth --> ")"
+      2    tok_semicolon --> ";"
+      2    Declarations
+         3    tok_var --> "VAR"
+         3    IdList
+            4    tok_identifier --> "A"
+            4    _IdList_
+               5    tok_comma --> ","
+               5    tok_identifier --> "B"
+               5    _IdList_
+         3    tok_colon --> ":"
+         3    Type
+            4    StandardType
+               5    tok_integer --> "INTEGER"
+         3    tok_semicolon --> ";"
+         3    Declarations
+            4    tok_var --> "VAR"
+            4    IdList
+               5    tok_identifier --> "C"
+               5    _IdList_
+            4    tok_colon --> ":"
+            4    Type
+               5    StandardType
+                  6    tok_real --> "REAL"
+            4    tok_semicolon --> ";"
+            4    Declarations
+      2    SubprogramDeclarations
+      2    CompoundStatement
+         3    tok_begin --> "BEGIN"
+         3    OptionalStatements
+            4    StatementList
+               5    Statement
+                  6    tok_identifier --> "A"
+                  6    RestOfStatement
+                     7    assignop
+                        8    tok_assign --> ":="
+                     7    Expression
+                        8    SimpleExpression
+                           9    Term
+                              10    Factor
+                                 11    tok_number --> "3"
+                              10    _Term_
+                           9    _SimpleExpression_
+                        8    _Expression_
+               5    _StatementList_
+                  6    tok_semicolon --> ";"
+                  6    Statement
+                     7    tok_identifier --> "B"
+                     7    RestOfStatement
+                        8    assignop
+                           9    tok_assign --> ":="
+                        8    Expression
+                           9    SimpleExpression
+                              10    Term
+                                 11    Factor
+                                    12    tok_identifier --> "A"
+                                    12    _Factor_
+                                 11    _Term_
+                                    12    mulop
+                                       13    tok_mul --> "*"
+                                    12    Factor
+                                       13    tok_number --> "4"
+                                    12    _Term_
+                              10    _SimpleExpression_
+                           9    _Expression_
+                  6    _StatementList_
+                     7    tok_semicolon --> ";"
+                     7    Statement
+                        8    tok_identifier --> "C"
+                        8    RestOfStatement
+                           9    assignop
+                              10    tok_assign --> ":="
+                           9    Expression
+                              10    SimpleExpression
+                                 11    Term
+                                    12    Factor
+                                       13    tok_op_prnth --> "("
+                                       13    Expression
+                                          14    SimpleExpression
+                                             15    Term
+                                                16    Factor
+                                                   17    tok_identifier --> "B"
+                                                   17    _Factor_
+                                                16    _Term_
+                                             15    _SimpleExpression_
+                                                16    addop
+                                                   17    tok_plus --> "+"
+                                                16    Term
+                                                   17    Factor
+                                                      18    tok_identifier --> "A"
+                                                      18    _Factor_
+                                                   17    _Term_
+                                                16    _SimpleExpression_
+                                          14    _Expression_
+                                       13    tok_cl_prnth --> ")"
+                                    12    _Term_
+                                       13    mulop
+                                          14    tok_div --> "/"
+                                       13    Factor
+                                          14    tok_number --> "2"
+                                       13    _Term_
+                                 11    _SimpleExpression_
+                              10    _Expression_
+                     7    _StatementList_
+         3    tok_end --> "END"
+      2    tok_period --> "."

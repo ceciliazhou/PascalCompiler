@@ -1,0 +1,148 @@
+6
+PROGRAM	tok_program | VAR tok_var | INTEGER tok_integer | REAL tok_real | PROCEDURE tok_procedure | BEGIN tok_begin | END tok_end 
+IF tok_if | THEN tok_then | WHILE tok_while | DO tok_do | ELSE tok_else | NOT tok_not | DIV tok_int_div | MOD tok_mod | AND tok_and | OR tok_or
+CONST tok_const | ARRAY tok_array | FUNCTION tok_function | OF tok_of
+= tok_equal | <> tok_ne | < tok_lt | <= tok_le | > tok_gt | >= tok_ge | + tok_add | - tok_subtract | * tok_mul | / tok_div | := tok_assign
+, tok_comma | ; tok_semicolon | . tok_period | ( tok_op_prnth | ) tok_cl_prnth | [ tok_op_brckt | ] tok_cl_brckt | : tok_colon
+id tok_id | num tok_number | $ tok_eof
+70
+Program ::= program id ( IdList ) ; Declarations  SubprogramDeclarations CompoundStatement . 
+IdList ::= id _IdList_
+_IdList_ ::=  , id _IdList_ 
+_IdList_ ::=  <nil>
+Declarations ::= var IdList : Type ; Declarations
+Declarations ::= <nil>
+Type ::= StandardType 
+Type ::= array [ num . . num ] of StandardType
+StandardType ::= integer 
+StandardType ::= real
+SubprogramDeclarations ::= SubprogramDeclaration ; SubprogramDeclarations
+SubprogramDeclarations ::= <nil>
+SubprogramDeclaration ::= SubprogramHead Declarations CompoundStatement
+SubprogramHead ::= function id Arguments : StandardType ;
+SubprogramHead ::=  procedure id Arguments ;
+Arguments ::= ( ParameterList ) 
+Arguments ::= <nil>
+ParameterList ::= IdList : Type _ParameterList_
+_ParameterList_ ::=  ; IdList : Type _ParameterList_
+_ParameterList_ ::= <nil>
+CompoundStatement ::= begin OptionalStatements end
+OptionalStatements ::= StatementList 
+OptionalStatements ::= <nil>
+StatementList ::= Statement _StatementList_ 
+_StatementList_ ::= ; Statement _StatementList_
+_StatementList_ ::= <nil>
+Statement ::= id RestOfStatement
+Statement ::= CompoundStatement
+Statement ::= if Expression then Statement else Statement
+Statement ::= while Expression do Statement
+RestOfStatement ::=  ( ExpressionList ) 
+RestOfStatement ::=  [ ExpressionList ] assignop Expression 
+RestOfStatement ::=  assignop Expression 
+RestOfStatement ::=  <nil>
+ExpressionList ::= Expression _ExpressionList_
+_ExpressionList_ ::= , Expression _ExpressionList_
+_ExpressionList_ ::= <nil>
+Expression ::= SimpleExpression _Expression_
+_Expression_ ::= <nil>
+_Expression_ ::= relop SimpleExpression
+SimpleExpression ::= Term _SimpleExpression_
+SimpleExpression ::= Sign Term _SimpleExpression_
+_SimpleExpression_ ::= addop Term _SimpleExpression_
+_SimpleExpression_ ::= <nil>
+Term ::= Factor _Term_
+_Term_ ::= mulop Factor _Term_
+_Term_ ::= <nil>
+Factor ::= id _Factor_
+Factor ::= num 
+Factor ::= ( Expression ) 
+Factor ::= not Factor
+_Factor_ ::= <nil>
+_Factor_ ::= ( ExpressionList ) 
+Sign ::= + 
+Sign ::= -
+relop ::= =
+relop ::= >
+relop ::= <
+relop ::= >=
+relop ::= <=
+relop ::= <>
+addop ::= +
+addop ::= -
+addop ::= OR
+mulop ::= *
+mulop ::= /
+mulop ::= DIV
+mulop ::= MOD
+mulop ::= AND
+assignop ::= :=
+FIRST(1) = { program }
+FIRST(2) = { id }
+FIRST(3) = { , }
+FIRST(4) = { ) : }
+FIRST(5) = { var }
+FIRST(6) = { begin }
+FIRST(7) = { integer real }
+FIRST(8) = { array }
+FIRST(9) = { integer }
+FIRST(10) = { real }
+FIRST(11) = { function procedure }
+FIRST(12) = { begin }
+FIRST(13) = { function procedure }
+FIRST(14) = { function }
+FIRST(15) = { procedure }
+FIRST(16) = { ( }
+FIRST(17) = { : ; }
+FIRST(18) = { id }
+FIRST(19) = { ; }
+FIRST(20) = { ) }
+FIRST(21) = { begin }
+FIRST(22) = { id begin if while }
+FIRST(23) = { end }
+FIRST(24) = { id begin if while }
+FIRST(25) = { ; }
+FIRST(26) = { end }
+FIRST(27) = { id }
+FIRST(28) = { begin }
+FIRST(29) = { if }
+FIRST(30) = { while }
+FIRST(31) = { ( }
+FIRST(32) = { [ }
+FIRST(33) = { := }
+FIRST(34) = { ; end else }
+FIRST(35) = { id num ( not + - } 
+FIRST(36) = { , }
+FIRST(37) = { ) ] }
+FIRST(38) = { id num ( not + - } 
+FIRST(39) = { then do ; end else , ) ] }
+FIRST(40) = { = > < >= <= <> }
+FIRST(41) = { id num ( not }
+FIRST(42) = { + - }
+FIRST(43) = { + - OR }
+FIRST(44) = { then do ; end else , ) ] = > < >= <= <> }
+FIRST(45) = { id num ( not }
+FIRST(46) = { * / DIV MOD AND }
+FIRST(47) = { + - OR then do ; end else , ] ) = > < >= <= <> }
+FIRST(48) = { id }
+FIRST(49) = { num }
+FIRST(50) = { ( }
+FIRST(51) = { not }
+FIRST(52) = { * / DIV MOD AND + - OR then do ; end else , ] ) = > < >= <= <> }
+FIRST(53) = { ( }
+FIRST(54) = { + }
+FIRST(55) = { - }
+FIRST(56) = { = }
+FIRST(57) = { > }
+FIRST(58) = { < }
+FIRST(59) = { >= }
+FIRST(60) = { <= }
+FIRST(61) = { <> }
+FIRST(62) = { + }
+FIRST(63) = { - }
+FIRST(64) = { OR }
+FIRST(65) = { * }
+FIRST(66) = { / }
+FIRST(67) = { DIV }
+FIRST(68) = { MOD }
+FIRST(69) = { AND }
+FIRST(70) = { := }

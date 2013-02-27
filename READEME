@@ -1,11 +1,23 @@
 COMPILE:
 -- The source files can be compiled on both Linux and Windows.
--- The attached executable file (under the bin directory) is built on windows using Code::Blocks 10.05.
 
 USAGE:
--- run the executable file (under bin directory) in windows command line:
+-- run the executable file (under bin directory) in windows command line or linux terminal as follows:
 lexAnalyst.exe pascal_file_name
--- check the output in console
+-- check the output in console.
 
-SAMPLE TEST:
--- example_output.txt is the redirected output by executing "lexAnalyst.exe example.pas > example_output.txt" in Windows command line.
+@src
+C++ source code
+
+@script
+A script (in Python) used to generate C++ code helps define data structures needed by the project.
+
+@Grammar
+This file contains the grammar set based on which this compiler works.
+
+@LL(1)ParseTable.xlsx
+This file contains the parse table calcuated from Grammar.
+
+@test
+Sample input and output.
+

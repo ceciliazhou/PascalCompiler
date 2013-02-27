@@ -1,0 +1,58 @@
+Grammar Specifications for Term Project
+
+Program ::= program id ( IdList ) ; Declarations 
+	SubprogramDeclarations CompoundStatement .
+
+IdList ::= id | Idlist , id
+
+Declarations ::= Declarations var IdList : Type ; | <nil>
+
+Type ::= StandardType | array [ num .. num ] of StandardType
+
+StandardType ::= integer | real
+
+SubprogramDeclarations ::= SubprogramDeclarations  SubprogramDeclaration ;
+			| <nil>
+
+SubprogramDeclaration ::= SubprogramHead Declarations CompoundStatement
+
+SubprogramHead ::= function id Arguments : StandardType ;
+		| procedure id Arguments ;
+
+Arguments ::= ( ParameterList ) | <nil>
+
+ParameterList ::= IdList : Type | ParameterList ; IdList : Type
+
+CompoundStatement ::= begin OptionalStatements end
+
+OptionalStatements ::= StatementList | <nil>
+
+StatementList ::= Statement | StatementList ; Statement
+
+Statement ::= Variable assignop Expression
+		| ProcedureStatement
+		| CompoundStatement
+		| if Expressions then Statement else Statement
+		| while Expressions do Statement
+
+Variable ::= id | id [ Expression ]
+
+ProcedureStatement ::= id | id ( ExpressionList )
+
+ExpressionList ::= Expression | ExpressionList , Expression
+
+Expression ::= SimpleExpression | SimpleExpression relop SimpleExpression
+
+SimpleExpression ::= Term | Sign Term | SimpleExpression addop Term
+
+Term ::= Factor | Term mulop Factor
+
+Factor ::= id | id ( ExpressionList ) | num | ( Expression ) | not factor
+
+relop ::= = | > | < | >= | <= | <>
+addop ::= + | - | OR
+mulop ::= * | / | DIV | MOD | AND
+
+assignop ::= :=
+
+Sign ::= + | -

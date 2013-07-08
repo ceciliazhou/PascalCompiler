@@ -1,6 +1,6 @@
 ## About
 
-This is a parser for a subset of the Pascal programming language. See ./Grammar for details of supported grammer.
+This is a parser for a subset of the Pascal programming language. See [Grammar](https://raw.github.com/ceciliazhou/pascal_parser/master/Grammar) for details of supported grammer.
 
 
 ## Usage
